@@ -4,9 +4,7 @@ local isfile = isfile or function(file)
 	end)
 	return suc and res ~= nil and res ~= ''
 end
-local delfile = delfile or function(file)
-	writefile(file, '')
-end
+
 
 local function downloadFile(path, func)
 	if not isfile(path) then
