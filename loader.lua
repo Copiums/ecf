@@ -27,7 +27,7 @@ local function wipeFolder(path)
 	for _, file in listfiles(path) do
 		if file:find('loader') then continue end
 		if isfile(file) and select(1, readfile(file):find('--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.')) == 1 then
-			delfile(file)
+			--delfile(file)
 		end
 	end
 end
@@ -45,12 +45,6 @@ if not shared.VapeDeveloper then
 	local commit = subbed:find('currentOid')
 	commit = commit and subbed:sub(commit + 13, commit + 52) or nil
 	commit = commit and #commit == 40 and commit or 'main'
-	if commit == 'main' or (isfile('newvape/profiles/commit.txt') and readfile('newvape/profiles/commit.txt') or '') ~= commit then
-		wipeFolder('newvape')
-		wipeFolder('newvape/games')
-		wipeFolder('newvape/guis')
-		wipeFolder('newvape/libraries')
-	end
 	writefile('newvape/profiles/commit.txt', commit)
 end
 
